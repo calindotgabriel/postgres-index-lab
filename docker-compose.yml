@@ -1,0 +1,27 @@
+# Postgres for the index / execution-plan lab.
+# Data lives in a named volume so you seed once (~30s) and keep it between
+# sessions. `npm run db:down` wipes it.
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: lab
+      POSTGRES_DB: lab
+    ports:
+      - "5434:5432" # 5434: dodges a local Postgres (5432) and the isolation lab (5433)
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    command:
+      - postgres
+      - -c
+      - shared_preload_libraries=pg_stat_statements # for `npm run top`
+      - -c
+      - pg_stat_statements.track=all
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d lab"]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  pgdata:

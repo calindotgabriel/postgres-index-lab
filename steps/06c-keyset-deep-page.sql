@@ -1,0 +1,11 @@
+-- 06c · Feed, page 5,000, with a cursor (keyset)
+-- Instead of "skip 100,000", say "continue after the last row I saw".
+-- Get the cursor from the last row of page 4,999 in psql (npm run psql):
+--   SELECT created_at, id FROM orders WHERE status = 'paid'
+--    ORDER BY created_at DESC, id DESC OFFSET 99999 LIMIT 1;
+-- Then filter on (created_at, id) < (that created_at, that id). Should cost what 06a costs.
+-- @setup
+-- TODO: the same index as 06a
+-- @query
+-- TODO: the 06a query without OFFSET, plus a row-comparison WHERE on (created_at, id)
+SELECT 1;
