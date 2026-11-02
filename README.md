@@ -8,6 +8,9 @@ This is the measured half of a write-up at **calingabriel.com/lab** (coming soon
 
 Requirements: Docker, Node 22+.
 
+Working through it: [`docs/guide.md`](docs/guide.md) has hints for every step, with the
+answers folded away.
+
 ## Start
 
 ```
