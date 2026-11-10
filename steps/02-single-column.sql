@@ -2,7 +2,7 @@
 -- The obvious first index. It finds the customer's rows fast.
 -- Question to answer from the plan: why is there still a Sort?
 -- @setup
--- TODO: one CREATE INDEX on customer_id
+CREATE INDEX idx_customer_id ON orders(customer_id);
 -- @query
 SELECT id, created_at, total
   FROM orders

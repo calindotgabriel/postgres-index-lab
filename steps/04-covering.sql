@@ -5,7 +5,7 @@
 -- If the plan says Index Only Scan but Heap Fetches is high, add "VACUUM orders;" as a
 -- second statement and run it again. Then find out what the visibility map is.
 -- @setup
--- TODO: the 03a index plus INCLUDE (...)
+CREATE INDEX idx_customer_id_status_created_at_covering ON orders(customer_id, status, created_at DESC) INCLUDE (id, total);
 -- @query
 SELECT id, created_at, total
   FROM orders

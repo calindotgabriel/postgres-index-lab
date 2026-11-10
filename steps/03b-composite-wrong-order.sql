@@ -1,7 +1,7 @@
 -- 03b · Same columns, wrong order
 -- Put created_at first. Before you run it: will Postgres use it, and how?
 -- @setup
--- TODO: the 03a index with created_at as the first column
+CREATE INDEX idx_created_at_customer_id_status ON orders(created_at DESC, customer_id, status);
 -- @query
 SELECT id, created_at, total
   FROM orders
